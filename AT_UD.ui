@@ -32,7 +32,7 @@
      <bool>false</bool>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string>Auto-Update-Firware</string>
@@ -78,7 +78,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>120</y>
       <width>121</width>
       <height>20</height>
      </rect>
@@ -95,8 +95,8 @@
    <widget class="QPushButton" name="start_btn">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>460</y>
+      <x>320</x>
+      <y>450</y>
       <width>91</width>
       <height>81</height>
      </rect>
@@ -108,46 +108,6 @@
     </property>
     <property name="text">
      <string>Start</string>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="MAC_DUT">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>40</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="current_fw">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>80</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="target_fw">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>120</y>
-      <width>251</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="notification_text">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>250</y>
-      <width>411</width>
-      <height>91</height>
-     </rect>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -165,26 +125,16 @@
      </font>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string>Thông Báo</string>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="final_result_text">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>221</width>
-      <height>131</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>50</x>
       <y>370</y>
       <width>91</width>
       <height>31</height>
@@ -196,7 +146,7 @@
      </font>
     </property>
     <property name="frameShape">
-     <enum>QFrame::WinPanel</enum>
+     <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string>Kết Quả</string>
@@ -205,7 +155,7 @@
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
-      <x>177</x>
+      <x>170</x>
       <y>160</y>
       <width>241</width>
       <height>23</height>
@@ -233,20 +183,54 @@
      <string>Tải FW vào DUT</string>
     </property>
    </widget>
-   <widget class="QLabel" name="test_lable">
+   <widget class="QTreeView" name="MAC_DUT">
     <property name="geometry">
      <rect>
-      <x>250</x>
-      <y>370</y>
-      <width>141</width>
-      <height>41</height>
+      <x>170</x>
+      <y>40</y>
+      <width>256</width>
+      <height>31</height>
      </rect>
     </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
+   </widget>
+   <widget class="QTreeView" name="Cur_FW">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>80</y>
+      <width>256</width>
+      <height>31</height>
+     </rect>
     </property>
-    <property name="text">
-     <string>TextLabel</string>
+   </widget>
+   <widget class="QTreeView" name="Updating_FW">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>120</y>
+      <width>256</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="Updating_FW_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>250</y>
+      <width>411</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="Updating_FW_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>171</width>
+      <height>121</height>
+     </rect>
     </property>
    </widget>
   </widget>
@@ -256,7 +240,7 @@
      <x>0</x>
      <y>0</y>
      <width>434</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
