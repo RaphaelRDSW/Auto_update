@@ -49,7 +49,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -60,14 +60,14 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>70</y>
       <width>121</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -85,7 +85,7 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
@@ -95,8 +95,8 @@
    <widget class="QPushButton" name="start_btn">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>450</y>
+      <x>330</x>
+      <y>480</y>
       <width>91</width>
       <height>81</height>
      </rect>
@@ -113,8 +113,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>210</y>
+      <x>150</x>
+      <y>310</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -131,32 +131,11 @@
      <string>Thông Báo</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>370</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="text">
-     <string>Kết Quả</string>
-    </property>
-   </widget>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>160</y>
+      <y>200</y>
       <width>241</width>
       <height>23</height>
      </rect>
@@ -169,6 +148,34 @@
     <property name="geometry">
      <rect>
       <x>10</x>
+      <y>200</y>
+      <width>141</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Tải FW vào DUT</string>
+    </property>
+   </widget>
+   <widget class="QTreeView" name="dialog_window">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>411</width>
+      <height>91</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
       <y>160</y>
       <width>141</width>
       <height>20</height>
@@ -176,61 +183,153 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>12</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Tải FW vào DUT</string>
+     <string>Số Lần Update</string>
     </property>
    </widget>
-   <widget class="QTreeView" name="MAC_DUT">
+   <widget class="QListWidget" name="MAC_DUT">
     <property name="geometry">
      <rect>
       <x>170</x>
       <y>40</y>
-      <width>256</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
    </widget>
-   <widget class="QTreeView" name="Cur_FW">
+   <widget class="QListWidget" name="Cur_FW">
     <property name="geometry">
      <rect>
       <x>170</x>
       <y>80</y>
-      <width>256</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
    </widget>
-   <widget class="QTreeView" name="Updating_FW">
+   <widget class="QListWidget" name="new_FW">
     <property name="geometry">
      <rect>
       <x>170</x>
       <y>120</y>
-      <width>256</width>
+      <width>231</width>
       <height>31</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QTreeView" name="Updating_FW_2">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>250</y>
-      <width>411</width>
-      <height>91</height>
-     </rect>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
    </widget>
-   <widget class="QTreeView" name="Updating_FW_3">
+   <widget class="QListWidget" name="update_times">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>160</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Fw_name_input">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>250</y>
+      <width>121</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Ví dụ : 'MA'</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>410</y>
-      <width>171</width>
-      <height>121</height>
+      <y>260</y>
+      <width>181</width>
+      <height>21</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Nhập tên bản FW update</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="FW_btn_confirm">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>260</y>
+      <width>75</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Xác nhận</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>530</y>
+      <width>191</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Harlow Solid Italic</family>
+      <pointsize>10</pointsize>
+      <italic>true</italic>
+     </font>
+    </property>
+    <property name="text">
+     <string>@Copy-right Raphael-RD-SwTeam</string>
     </property>
    </widget>
   </widget>
@@ -240,7 +339,7 @@
      <x>0</x>
      <y>0</y>
      <width>434</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

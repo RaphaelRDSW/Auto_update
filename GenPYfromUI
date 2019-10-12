@@ -1,0 +1,1 @@
+pyuic5.exe -x "F:\Selenium\Qt\auto_update\AT_UD.ui" -o "F:\Selenium\Qt\auto_update\AT_UD.py"

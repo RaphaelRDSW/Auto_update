@@ -10,7 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
+    def setupUi(self,MainWindow ):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(481, 360)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -51,7 +51,11 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         self.selectImageBtn.clicked.connect(self.setImage)
-        self.addBtn.clicked.connect(self.addItem)
+        # self.addBtn.clicked.connect(self.addItem)
+        def test_A(self):
+            self.addBtn.clicked.connect(self.addItem)
+        test_A(self)
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
