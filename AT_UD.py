@@ -145,6 +145,10 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         #self.FW_btn_confirm.clicked.connect(self.Manual_input_FW)
+        # def Run_click(self):
+        #     self.FW_btn_confirm.clicked.connect(self.Manual_input_FW)
+        #
+        # Run_click(self)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
