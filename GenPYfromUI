@@ -1,1 +1,2 @@
-pyuic5.exe -x "F:\Selenium\Qt\auto_update\AT_UD.ui" -o "F:\Selenium\Qt\auto_update\AT_UD.py"
+C:\Users\V0923806.VN\AppData\Local\Programs\Python\Python37\Scripts
+pyuic5.exe -x "F:\Automation_Project\GPON_auto_update\auto_update\AT_UD.ui" -o "F:\Automation_Project\GPON_auto_update\auto_update\AT_UD.py"

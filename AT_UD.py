@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'F:\Selenium\Qt\auto_update\AT_UD.ui'
+# Form implementation generated from reading ui file 'F:\Automation_Project\GPON_auto_update\auto_update\AT_UD.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.0
 #
@@ -8,12 +8,12 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from functools import wraps
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(434, 583)
+        MainWindow.resize(794, 583)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -43,13 +43,13 @@ class Ui_MainWindow(object):
         self.label_5.setFont(font)
         self.label_5.setObjectName("label_5")
         self.start_btn = QtWidgets.QPushButton(self.centralwidget)
-        self.start_btn.setGeometry(QtCore.QRect(330, 480, 91, 81))
+        self.start_btn.setGeometry(QtCore.QRect(340, 510, 91, 31))
         font = QtGui.QFont()
         font.setPointSize(14)
         self.start_btn.setFont(font)
         self.start_btn.setObjectName("start_btn")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(150, 310, 121, 31))
+        self.label_3.setGeometry(QtCore.QRect(160, 350, 121, 31))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.label_3.setFont(font)
@@ -65,9 +65,6 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.label_6.setFont(font)
         self.label_6.setObjectName("label_6")
-        self.dialog_window = QtWidgets.QTreeView(self.centralwidget)
-        self.dialog_window.setGeometry(QtCore.QRect(10, 350, 411, 91))
-        self.dialog_window.setObjectName("dialog_window")
         self.label_7 = QtWidgets.QLabel(self.centralwidget)
         self.label_7.setGeometry(QtCore.QRect(10, 160, 141, 20))
         font = QtGui.QFont()
@@ -107,34 +104,59 @@ class Ui_MainWindow(object):
         self.update_times.setFont(font)
         self.update_times.setObjectName("update_times")
         self.Fw_name_input = QtWidgets.QLineEdit(self.centralwidget)
-        self.Fw_name_input.setGeometry(QtCore.QRect(200, 250, 121, 41))
+        self.Fw_name_input.setGeometry(QtCore.QRect(200, 280, 141, 31))
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(11)
         self.Fw_name_input.setFont(font)
         self.Fw_name_input.setObjectName("Fw_name_input")
         self.label_8 = QtWidgets.QLabel(self.centralwidget)
-        self.label_8.setGeometry(QtCore.QRect(10, 260, 181, 21))
+        self.label_8.setGeometry(QtCore.QRect(10, 290, 181, 21))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_8.setFont(font)
         self.label_8.setObjectName("label_8")
         self.FW_btn_confirm = QtWidgets.QPushButton(self.centralwidget)
-        self.FW_btn_confirm.setGeometry(QtCore.QRect(340, 260, 75, 31))
+        self.FW_btn_confirm.setGeometry(QtCore.QRect(350, 280, 75, 31))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.FW_btn_confirm.setFont(font)
         self.FW_btn_confirm.setObjectName("FW_btn_confirm")
         self.label_10 = QtWidgets.QLabel(self.centralwidget)
-        self.label_10.setGeometry(QtCore.QRect(0, 530, 191, 20))
+        self.label_10.setGeometry(QtCore.QRect(0, 520, 191, 20))
         font = QtGui.QFont()
         font.setFamily("Harlow Solid Italic")
-        font.setPointSize(10)
+        font.setPointSize(11)
         font.setItalic(True)
         self.label_10.setFont(font)
         self.label_10.setObjectName("label_10")
+        self.dialog_window = QtWidgets.QListWidget(self.centralwidget)
+        self.dialog_window.setGeometry(QtCore.QRect(0, 390, 431, 111))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.dialog_window.setFont(font)
+        self.dialog_window.setObjectName("dialog_window")
+        self.update_times_2 = QtWidgets.QListWidget(self.centralwidget)
+        self.update_times_2.setGeometry(QtCore.QRect(170, 240, 231, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        font.setBold(True)
+        font.setWeight(75)
+        self.update_times_2.setFont(font)
+        self.update_times_2.setObjectName("update_times_2")
+        self.label_9 = QtWidgets.QLabel(self.centralwidget)
+        self.label_9.setGeometry(QtCore.QRect(10, 240, 141, 20))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_9.setFont(font)
+        self.label_9.setObjectName("label_9")
+        self.calendarWidget = QtWidgets.QCalendarWidget(self.centralwidget)
+        self.calendarWidget.setGeometry(QtCore.QRect(450, 10, 312, 183))
+        self.calendarWidget.setObjectName("calendarWidget")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 434, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 794, 21))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -143,12 +165,6 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
-
-        #self.FW_btn_confirm.clicked.connect(self.Manual_input_FW)
-        # def Run_click(self):
-        #     self.FW_btn_confirm.clicked.connect(self.Manual_input_FW)
-        #
-        # Run_click(self)
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -161,31 +177,18 @@ class Ui_MainWindow(object):
         self.label_3.setText(_translate("MainWindow", "Thông Báo"))
         self.label_6.setText(_translate("MainWindow", "Tải FW vào DUT"))
         self.label_7.setText(_translate("MainWindow", "Số Lần Update"))
-        self.Fw_name_input.setText(_translate("MainWindow", "Ví dụ : \'MA\'"))
+        self.Fw_name_input.setText(_translate("MainWindow", "GP5.03LP7.3.235"))
         self.label_8.setText(_translate("MainWindow", "Nhập tên bản FW update"))
         self.FW_btn_confirm.setText(_translate("MainWindow", "Xác nhận"))
         self.label_10.setText(_translate("MainWindow", "@Copy-right Raphael-RD-SwTeam"))
-
-    # def Manual_input_FW(self):
-    #     value = self.Fw_name_input.text()
-    #     self.Fw_name_input.clear()
-    #     self.MAC_DUT.addItem(value)
+        self.label_9.setText(_translate("MainWindow", "Số Lần Update"))
 
 
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
-# if __name__ == "AT_UD":
-#     print('__name__:',__name__)
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     MainWindow = QtWidgets.QMainWindow()
-#     ui = Ui_MainWindow()
-#     ui.setupUi(MainWindow)
-#     MainWindow.show()
-#     sys.exit(app.exec_())
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
