@@ -3,6 +3,7 @@ import time
 from selenium.webdriver.common.keys import Keys
 import os
 import re
+#from auto_update import main_process_func
 ''' -->> global veriables  <<---'''
 link_upgrade        = 'http://192.168.1.1/cgi-bin/tools_update.asp'
 link_login          = 'http://192.168.1.1/cgi-bin/login.asp'
@@ -11,21 +12,22 @@ link_status         = 'http://192.168.1.1/cgi-bin/status_deviceinfo.asp'
 link_maintannance   = 'http://192.168.1.1/cgi-bin/tools_system.asp'
 src_driver = os.getcwd()
 dst_driver = src_driver + "\Drive\chromedriver.exe"
-Current_FW = ''
+#Current_FW = ''
 mac = ''
-driver = wd.Chrome(dst_driver)
+#driver = wd.Chrome(dst_driver)
+driver = None
 
 def check_connection():
-    cmd         = "ping 192.168.1.1 -n 12"
+    cmd         = "ping 192.168.1.1 -n 1"
     pattern     = r'Lost = 0'
     cmd_buffer  = os.popen(cmd).read()
     flag = re.search(pattern, cmd_buffer)
-    if flag is None:
-        print('Not Connect!')
-        return 0
-    else:
-        print("Connected !")
+    if flag:
+        print('Connected!')
         return 1
+    else:
+        print("Not Connect!")
+        return 0
 
 def login():
     print('driver.session_id = ',driver.session_id)
@@ -55,14 +57,30 @@ def login():
                     print ("Logged in with default password after times: ")
                     break
     except:
-        driver.refresh()
+        print('if Login func rasing an exception, comback start program loop !!!')
+        Restart_Program()
 
-def up_fw():
-    print('driver.session_id = ', driver.session_id)
-    fw_directory = os.getcwd() + '\Firmware\/tclinux_5.03LP.bin'
-    driver.get(link_upgrade)
-    driver.find_element_by_name("tools_FW_UploadFile").send_keys(fw_directory)
-    driver.find_element_by_name("FW_apply").click()
+
+def up_fw(filename):
+    try:
+        print('driver.session_id = ', driver.session_id)
+        fw_directory = os.getcwd() + '\Firmware\/{}'.format(filename)
+        driver.get(link_upgrade)
+        driver.find_element_by_name("tools_FW_UploadFile").send_keys(fw_directory)
+        driver.find_element_by_name("FW_apply").click()
+        while 1:
+            time.sleep(0.5)
+            data = driver.find_element_by_tag_name('font')
+            str_success = data.text
+            print('data = ',str_success)
+            pattern_en = r'File upload succeeded, starting flash erasing and programming!!'
+            pattern_vn = r'Tập tin tải lên thành công, bắt đầu xóa flash và khởi động lại!!'
+            if re.search(pattern_en,str_success) or re.search(pattern_vn,str_success):
+                return True
+            else:
+                return False
+    except:
+        Restart_Program()
 
 def get_MAC():
     ip_cmd      = 'arp -a 192.168.1.1'
@@ -123,26 +141,36 @@ def check_Mac_in_Factoy_Reset_List(MAC):
             return 0
 
 def get_curent_fw():
-    print('driver.session_id = ', driver.session_id)
-    driver.get(link_status)
-    data = driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr[3]/td[3]')
-    global Current_FW
-    Current_FW = data.text
-    print('Current_FW = ', Current_FW)
-    #driver.close()
+    try:
+        print('driver.session_id = ', driver.session_id)
+        driver.get(link_status)
+        data = driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr[3]/td[3]')
+        Current_FW = data.text
+        print('Current_FW = ', Current_FW)
+        return Current_FW
+    except:
+        Restart_Program()
 
 def factory_reset():
-    print('driver.session_id = ', driver.session_id)
-    driver.get(link_maintannance)
-    driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr/td[2]/input[3]').click()
-    time.sleep(0.2)
-    driver.switch_to.alert.accept()
-    time.sleep(0.5)
-    #driver.close()
+    try:
+        print('driver.session_id = ', driver.session_id)
+        driver.get(link_maintannance)
+        driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr/td[2]/input[3]').click()
+        time.sleep(0.2)
+        driver.switch_to.alert.accept()
+        time.sleep(0.5)
+    except:
+        Restart_Program()
 
+def check_correct_fw(cur_fw, ui_input_fw):
+    if cur_fw == ui_input_fw:
+        return True
+    else:
+        return False
 
 
 # if __name__ == '__main__':
+#   print(check_correct_fw('aaa',"aaa"))
 #     while 1:
 #         if check_connection() == 1:
 #             time.sleep(10)

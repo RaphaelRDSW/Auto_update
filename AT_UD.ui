@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>794</width>
-    <height>583</height>
+    <width>347</width>
+    <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,25 +17,26 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>110</x>
+      <x>20</x>
       <y>0</y>
-      <width>221</width>
+      <width>311</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>16</pointsize>
+      <family>Gabriola</family>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
-     <string>Auto-Update-Firware</string>
+     <string>Auto Upgrade Firware Tool by RDSWVN</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_1">
@@ -43,13 +44,13 @@
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>121</width>
-      <height>20</height>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
@@ -60,62 +61,26 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>70</y>
-      <width>121</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>FW Hiện Tại</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>120</y>
-      <width>121</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>FW Sẽ Update </string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="start_btn">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>510</y>
+      <y>80</y>
       <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>14</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Start</string>
+     <string>FW Hiện Tại</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>350</y>
-      <width>121</width>
+      <x>120</x>
+      <y>310</y>
+      <width>111</width>
       <height>31</height>
      </rect>
     </property>
@@ -125,55 +90,24 @@
      </font>
     </property>
     <property name="frameShape">
-     <enum>QFrame::Box</enum>
+     <enum>QFrame::NoFrame</enum>
     </property>
     <property name="text">
      <string>Thông Báo</string>
-    </property>
-   </widget>
-   <widget class="QProgressBar" name="progressBar">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>200</y>
-      <width>241</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="value">
-     <number>24</number>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_6">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>200</y>
-      <width>141</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Tải FW vào DUT</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>160</y>
-      <width>141</width>
-      <height>20</height>
+      <y>130</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
@@ -183,9 +117,9 @@
    <widget class="QListWidget" name="MAC_DUT">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>130</x>
       <y>40</y>
-      <width>231</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -200,26 +134,9 @@
    <widget class="QListWidget" name="Cur_FW">
     <property name="geometry">
      <rect>
-      <x>170</x>
+      <x>130</x>
       <y>80</y>
-      <width>231</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="new_FW">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>120</y>
-      <width>231</width>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -234,10 +151,10 @@
    <widget class="QListWidget" name="update_times">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>160</y>
-      <width>231</width>
-      <height>31</height>
+      <x>130</x>
+      <y>120</y>
+      <width>211</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -251,28 +168,10 @@
    <widget class="QLineEdit" name="Fw_name_input">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>280</y>
-      <width>141</width>
+      <x>130</x>
+      <y>270</y>
+      <width>211</width>
       <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>GP5.03LP7.3.235</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>290</y>
-      <width>181</width>
-      <height>21</height>
      </rect>
     </property>
     <property name="font">
@@ -281,70 +180,71 @@
      </font>
     </property>
     <property name="text">
-     <string>Nhập tên bản FW update</string>
+     <string>Ví dụ : GP5.03MA7.3.235</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="FW_btn_confirm">
+   <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>280</y>
-      <width>75</width>
-      <height>31</height>
+      <x>10</x>
+      <y>260</y>
+      <width>101</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>10</pointsize>
+      <pointsize>11</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Xác nhận</string>
+     <string>Nhập tên bản 
+FW upgrade</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_10">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>520</y>
-      <width>191</width>
+      <x>30</x>
+      <y>610</y>
+      <width>261</width>
       <height>20</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <family>Harlow Solid Italic</family>
-      <pointsize>11</pointsize>
-      <italic>true</italic>
+      <family>Freestyle Script</family>
+      <pointsize>16</pointsize>
+      <italic>false</italic>
      </font>
     </property>
     <property name="text">
-     <string>@Copy-right Raphael-RD-SwTeam</string>
+     <string>@Copy-right Raphael VietNam RD-SW Team</string>
     </property>
    </widget>
    <widget class="QListWidget" name="dialog_window">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>390</y>
-      <width>431</width>
-      <height>111</height>
+      <x>10</x>
+      <y>340</y>
+      <width>331</width>
+      <height>201</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>11</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
    </widget>
-   <widget class="QListWidget" name="update_times_2">
+   <widget class="QListWidget" name="connection_status">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>240</y>
-      <width>231</width>
+      <x>130</x>
+      <y>180</y>
+      <width>211</width>
       <height>31</height>
      </rect>
     </property>
@@ -360,9 +260,82 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>240</y>
-      <width>141</width>
-      <height>20</height>
+      <y>170</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Trạng thái
+kết nối với DUT</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="stop_btn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>560</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Stop</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="restart_btn">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>560</y>
+      <width>91</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>start</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>220</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Tên FIle</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="fw_file_name">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>220</y>
+      <width>211</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -371,17 +344,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Số Lần Update</string>
-    </property>
-   </widget>
-   <widget class="QCalendarWidget" name="calendarWidget">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>10</y>
-      <width>312</width>
-      <height>183</height>
-     </rect>
+     <string>Ví dụ : tclinux_5.03MA.bin</string>
     </property>
    </widget>
   </widget>
@@ -390,7 +353,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>794</width>
+     <width>347</width>
      <height>21</height>
     </rect>
    </property>
