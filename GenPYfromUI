@@ -1,2 +1,2 @@
 C:\Users\V0923806.VN\AppData\Local\Programs\Python\Python37\Scripts
-pyuic5.exe -x "F:\Automation_Project\GPON_auto_update\auto_update\AT_UD.ui" -o "F:\Automation_Project\GPON_auto_update\auto_update\AT_UD.py"
+pyuic5.exe -x "F:\Automation_Project\GPON_auto_update\auto_update\UI_module\AT_UD.ui" -o "F:\Automation_Project\GPON_auto_update\auto_update\UI_module\AT_UD.py"

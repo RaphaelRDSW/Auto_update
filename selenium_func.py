@@ -14,8 +14,8 @@ src_driver = os.getcwd()
 dst_driver = src_driver + "\Drive\chromedriver.exe"
 #Current_FW = ''
 mac = ''
-#driver = wd.Chrome(dst_driver)
-driver = None
+driver = wd.Chrome(dst_driver)
+#driver = None
 
 def check_connection():
     cmd         = "ping 192.168.1.1 -n 1"
@@ -169,13 +169,7 @@ def check_correct_fw(cur_fw, ui_input_fw):
         return False
 
 
-# if __name__ == '__main__':
-#   print(check_correct_fw('aaa',"aaa"))
-#     while 1:
-#         if check_connection() == 1:
-#             time.sleep(10)
-#             login()
-#             get_curent_fw()
-#             up_fw()
-#         driver.close()
-#         print('waiting for connect ! Pinging ')
+if __name__ == '__main__':
+    print(check_correct_fw('aaa',"aaa"))
+    login()
+    print('waiting for connect ! Pinging ')
