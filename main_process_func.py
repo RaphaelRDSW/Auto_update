@@ -1,25 +1,27 @@
 from PyQt5 import QtWidgets
 import threading as thr
 import sys
-from  selenium import webdriver
+from selenium import webdriver
 from selenium.common.exceptions import UnexpectedAlertPresentException, NoAlertPresentException, NoSuchElementException, \
     InvalidArgumentException
 import time
 import os
 from UI_module.AT_UD import Ui_MainWindow
 import re
+
 stop_flag = 0
 ''' -->> global veriables  <<---'''
-link_upgrade        = 'http://192.168.1.1/cgi-bin/tools_update.asp'
-link_login          = 'http://192.168.1.1/cgi-bin/login.asp'
-link_logged         = 'http://192.168.1.1/cgi-bin/index.asp'
-link_status         = 'http://192.168.1.1/cgi-bin/status_deviceinfo.asp'
-link_maintannance   = 'http://192.168.1.1/cgi-bin/tools_system.asp'
+link_upgrade = 'http://192.168.1.1/cgi-bin/tools_update.asp'
+link_login = 'http://192.168.1.1/cgi-bin/login.asp'
+link_logged = 'http://192.168.1.1/cgi-bin/index.asp'
+link_status = 'http://192.168.1.1/cgi-bin/status_deviceinfo.asp'
+link_maintannance = 'http://192.168.1.1/cgi-bin/tools_system.asp'
 src_driver = os.getcwd()
-dst_driver = src_driver + "\Drive\chromedriver.exe"
-driver = webdriver.Chrome(dst_driver)
+#dst_driver = src_driver + "\Drive\chromedriver.exe"
+#driver = webdriver.Firefox()
+driver = webdriver.Firefox()
 class Inheritance_Ui_MainWindow(Ui_MainWindow):
-    def login_ui(self,cur_pw):
+    def login_ui(self, cur_pw):
         try:
             driver.get(link_login)
         except Exception as e:
@@ -29,12 +31,12 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
         print('driver.session_id = ', driver.session_id)
         log_times_num = 0
         log_flag = 1
-        #cur_pw = self.get_pw()
+        # cur_pw = self.get_pw()
         def_pass = 'AABB012340'
         try:
             while log_flag:
                 if driver.current_url == link_logged:
-                     break
+                    break
                 log_times_num += 1
                 if log_times_num < 3:
                     try:
@@ -44,7 +46,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                         if driver.current_url == link_logged:
                             print('login function return true !')
                             return True
-                    except Exception as e :
+                    except Exception as e:
                         print(e)
                         return False
 
@@ -67,6 +69,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
             return False
         finally:
             print('finally log-in block ')
+
     def check_connection_ui(self):
         cmd = "ping 192.168.1.1 -n 1"
         pattern = r'Lost = 0'
@@ -79,8 +82,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
             else:
                 print("Not Connect!")
                 return 0
-        #time.sleep(1)
-
+        # time.sleep(1)
 
     def write_Mac_to_list1_ui(self, MAC):
         text_file = open("list1.txt", "a")
@@ -111,12 +113,12 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
             else:
                 return 0
 
-    #@property
+    # @property
     def getMac_ui(self):
         ip_cmd = 'arp -a 192.168.1.1'
         ip_buffer = os.popen((ip_cmd)).read()
         buffer = re.findall(r'[\w-]+[\w-]{10}', ip_buffer)
-        #mac=None
+        # mac=None
         if len(buffer) >= 1:
             mac = (''.join(buffer[0])).upper()
             print(mac)
@@ -124,7 +126,6 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
         else:
             print('can not get MAC')
             return False
-
 
     def getCurrentFw_ui(self):
         try:
@@ -139,33 +140,37 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
             print(e)
             return False
 
-
-    def up_fw_ui(self,filename):
+    def up_fw_ui(self, filename):
         try:
             print('driver.session_id = ', driver.session_id)
-            fw_directory = os.getcwd() + '\Firmware\/{}'.format(filename)
+            fw_directory = os.getcwd() + '\Firmware\{}'.format(filename)
+            print('fw_directory = os.getcwd() + \Firmware\{}.format(filename)')
+            print(fw_directory)
             driver.get(link_upgrade)
             driver.find_element_by_name("tools_FW_UploadFile").send_keys(fw_directory)
             driver.find_element_by_name("FW_apply").click()
             while 1:
-                time.sleep(0.5)
-                data = driver.find_element_by_tag_name('font')
-                str_success = data.text
-                print('data = ', str_success)
-                pattern_en = r'File upload succeeded, starting flash erasing and programming!!'
-                pattern_vn = r'Tập tin tải lên thành công, bắt đầu xóa flash và khởi động lại!!'
-                if re.search(pattern_en, str_success) or re.search(pattern_vn, str_success):
-                    return True
-                else:
-                    return False
+                try:
+                    data = driver.find_element_by_tag_name('font')
+                    #data_ff = driver.find_element_by_xpath('/html/body/table/tbody/tr[2]/td/font')
+                    str_success = data.text
+                    #str_success_ff = data_ff.text
+                    print('find_element_by_tag_name data = ', str_success)
+                    #print('find_element_by_xpath data_ff = ',data_ff)
+                    pattern_en = r'File upload succeeded, starting flash erasing and programming!!'
+                    pattern_vn = r'Tập tin tải lên thành công, bắt đầu xóa flash và khởi động lại!!'
+                    if re.search(pattern_en, str_success) or re.search(pattern_vn, str_success): # or re.search(pattern_en,str_success_ff) or re.search(pattern_vn,str_success_ff):
+                        return True
+                except Exception as e:
+                    print(e)
+                    time.sleep(1.5)
+                    continue
+
         except Exception as e:
             print(e)
             return -1
-        except InvalidArgumentException:
-            return -1
 
-
-    def check_factory_reset_list_ui(self,MAC):
+    def check_factory_reset_list_ui(self, MAC):
         with open('factoryRestart.txt') as f:
             if MAC in f.read():
                 return 1
@@ -179,36 +184,38 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
             driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr/td[2]/input[3]').click()
             time.sleep(0.2)
             driver.switch_to.alert.accept()
-            #time.sleep(0.5)
+            # time.sleep(0.5)
             print('Factory Reset start !')
             return True
-        except Exception as e :
+        except Exception as e:
             print(e)
             return False
 
-    def display_MAC_DUT_ui(self,input_value):
+    def display_MAC_DUT_ui(self, input_value):
         self.MAC_DUT.clear()
         self.MAC_DUT.addItem(input_value)
 
-    def display_Current_FW_ui(self,input_fw):
+    def display_Current_FW_ui(self, input_fw):
         self.Cur_FW.clear()
         self.Cur_FW.addItem(input_fw)
 
-    def display_progress_ui(self,input_notification):
+    def display_progress_ui(self, input_notification):
         self.dialog_window.clear()
         self.dialog_window.addItem(input_notification)
 
-    def display_connection_status_ui(self,input_status):
+    def display_connection_status_ui(self, input_status):
         self.connection_status.clear()
         self.connection_status.addItem(input_status)
-        #self.connection_status.colorCount('')
+        # self.connection_status.colorCount('')
 
-    def display_update_times(self,input_upgrade_time):
+    def display_update_times(self, input_upgrade_time):
         self.update_times.clear()
         self.update_times.addItem(input_upgrade_time)
-    def display_dialog_window_color(self,str_font_color,background_color_str):
-        color_str_bg = "{}{}".format(str_font_color,background_color_str)
-        self.dialog_window.setStyleSheet(color_str_bg)#"background-color: rgb(166, 249, 249);"
+
+    def display_dialog_window_color(self, str_font_color, background_color_str):
+        color_str_bg = "{}{}".format(str_font_color, background_color_str)
+        self.dialog_window.setStyleSheet(color_str_bg)  # "background-color: rgb(166, 249, 249);"
+
     def restart_notification(self):
         self.dialog_window.clear()
         self.dialog_window.addItem('Chương trình đang khỏi động lại')
@@ -216,23 +223,22 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
     def get_fw_file_name(self):
         text_data = self.fw_file_name.text()
         buffer = re.findall(r'Ví dụ :', text_data)
-        print('get_file_name buffer = ',buffer)
+        print('get_file_name buffer = ', buffer)
         if buffer:
             return False
         else:
-            print('text_data.strip() = ',text_data.strip())
+            print('text_data.strip() = ', text_data.strip())
             return text_data.strip()
 
     def get_fw_target_name_ui(self):
         text_data = self.Fw_target_input.text()
         buffer = re.findall(r'Ví dụ :', text_data)
-        print('get_fw_file_name buffer = ',buffer)
+        print('get_fw_file_name buffer = ', buffer)
         if buffer:
             return False
         else:
-            print('text_data.strip() = ',text_data.strip())
+            print('text_data.strip() = ', text_data.strip())
             return text_data.strip()
-
 
     def Stop_Program(self):
         global stop_flag
@@ -249,8 +255,8 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
         print('start_btn is clicked, stop_flag = ', stop_flag)
         self.creat_thread()
 
-    def get_pw(self,MAC):
-        #MAC = self.getMac_ui()
+    def get_pw(self, MAC):
+        # MAC = self.getMac_ui()
         if MAC != False:
             mac_split = MAC.split('-')
             pw = str(mac_split[1]) + str(mac_split[2]) + str(mac_split[3]) + str(mac_split[4]) + str(mac_split[5])
@@ -259,11 +265,12 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
         else:
             print('Can not get pw')
 
-    def check_correct_fw_ui(self,cur_fw, ui_input_fw):
+    def check_correct_fw_ui(self, cur_fw, ui_input_fw):
         if cur_fw == ui_input_fw:
             return True
         else:
             return False
+
     def display_start_warning(self):
         self.display_dialog_window_color('background-color: rgb(200, 200, 99);\n', 'color: rgb(36, 36, 36);')
         self.display_progress_ui(
@@ -294,15 +301,15 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                 self.display_progress_ui('Chưa nhập vào Tên file firmware\nNhập Tên chính xác và nhấn nút Start để khởi đông lại chương trình')
                 time.sleep(6)
                 break
-
             if stop_flag == 1:
                 break
             if self.check_connection_ui():
                 self.display_connection_status_ui('Đã kết nối !!')
-                driver = webdriver.Chrome(dst_driver)
+                #driver = webdriver.Chrome(dst_driver)
+                driver = webdriver.Firefox()
                 MAC_addr = self.getMac_ui()
                 if MAC_addr:
-                    print('MAC_addr = ',MAC_addr)
+                    print('MAC_addr = ', MAC_addr)
                     current_pw = self.get_pw(MAC_addr)
                     if self.check_Mac_in_list1_ui(MAC_addr):
                         self.display_update_times('Đã upgrade lần 1')
@@ -314,7 +321,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                     driver.close()
                     continue
                 if self.login_ui(current_pw):
-                    print('inside log_in current_pw = ',current_pw)
+                    print('inside log_in current_pw = ', current_pw)
                     if self.getCurrentFw_ui():
                         current_fw = self.getCurrentFw_ui()
                         self.display_Current_FW_ui(current_fw)
@@ -337,7 +344,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                             self.display_progress_ui('Đã upgrade lần 2 ,\nKiểm tra Danh sách Factory Reset')
                             if self.check_factory_reset_list_ui(MAC_addr):
                                 final_current_fw = self.getCurrentFw_ui()
-                                if final_current_fw and  (final_current_fw == fw_target_name):
+                                if final_current_fw and (final_current_fw == fw_target_name):
                                     print('Complete !!!')
                                     self.display_dialog_window_color('background-color: rgb(0, 44, 0);\n','color: rgb(255, 255, 255);')
                                     self.display_progress_ui('Đã hoàn thành tất các bước !\nRút Điện.\nCắm dầy mạng sang bản khác !!!')
@@ -346,15 +353,17 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                                     time.sleep(1)
                                     continue
                                 else:
-                                    #print('Đang kiểm tra bản bản khởi đổng lại thành công chưa')
-                                    self.display_progress_ui('Đang kiểm tra bản bản khởi động lại thành công chưa')
+                                    # print('Đang kiểm tra bản bản khởi đổng lại thành công chưa')
+                                    self.display_progress_ui(
+                                        'Đang kiểm tra bản bản khởi động lại thành công chưa')
                                     driver.close()
                                     continue
                             else:
                                 print('Start Factory reset')
                                 if self.factory_reset_ui():
                                     self.write_Mac_to_factory_reset_ui(MAC_addr)
-                                    self.display_progress_ui('KHÔNG ĐƯỢC RÚT ĐIỆN !\nĐang Factory Set !.\nBản Đang khởi động lại \nCó thể cắm dây mạng sang bản khác')
+                                    self.display_progress_ui(
+                                        'KHÔNG ĐƯỢC RÚT ĐIỆN !\nĐang Factory Set !.\nBản Đang khởi động lại \nCó thể cắm dây mạng sang bản khác')
                                     self.display_update_times('2/2 Đang factory reset')
                                 else:
                                     driver.close()
@@ -372,7 +381,7 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                                 print('Can not get current_fw_2nd')
                                 driver.close()
                                 continue
-                            if  not self.check_correct_fw_ui(current_fw_2nd, fw_target_name) and self.check_Mac_in_list1_ui(MAC_addr) == 1:
+                            if not self.check_correct_fw_ui(current_fw_2nd,fw_target_name) and self.check_Mac_in_list1_ui(MAC_addr) == 1:
                                 print('Firm ware not same')
                                 self.display_dialog_window_color('background-color: rgb(165, 0, 0);\n','color: rgb(255, 255, 255);')
                                 self.display_progress_ui('Phiền Bản FW này không đúng!!\nLIÊN HỆ KỸ SƯ XỦ LÝ !!\nChương trình tạm dừng\nBấm nút "Start" để khơi động lại')
@@ -382,11 +391,14 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                             if update_status_2 == True:
                                 self.display_progress_ui("Upgrade lần 2 thành công !!")
                                 self.write_Mac_to_list2_ui(MAC_addr)
-                                self.display_progress_ui('Tập tin tải lên thành công,\nbắt đầu xóa flash và khởi động lại!!\nĐã upgrade lần 1!.\nĐang tiến hành Upgrade lần 2\nBản Đang khởi động lại \nCó thể cắm dây mạng sang bản khác')
+                                self.display_progress_ui(
+                                    'Tập tin tải lên thành công,\nbắt đầu xóa flash và khởi động lại!!\nĐã upgrade lần 1!.\nĐang tiến hành Upgrade lần 2\nBản Đang khởi động lại \nCó thể cắm dây mạng sang bản khác')
                                 self.display_update_times('Lần 2/2 (file list2.txt) \nCần upgrade 2 lần')
                             elif update_status_2 == -1:
-                                self.display_dialog_window_color('background-color: rgb(165, 0, 0);\n','color: rgb(255, 255, 255);')
-                                self.display_progress_ui('Tên File FW nhập vào không đúng\nVới FW trong thư mực "\Firmware"')
+                                self.display_dialog_window_color('background-color: rgb(165, 0, 0);\n',
+                                                                 'color: rgb(255, 255, 255);')
+                                self.display_progress_ui(
+                                    'Tên File FW nhập vào không đúng\nVới FW trong thư mực "\Firmware"')
                                 driver.close()
                                 print('InvalidArgumentException in 2nd upgrade')
                                 break
@@ -405,11 +417,14 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                         if update_status_1 == True:
                             self.display_progress_ui('Upgrade lần 1 thành công !!')
                             self.write_Mac_to_list1_ui(MAC_addr)
-                            self.display_progress_ui('Tập tin tải lên thành công,\nbắt đầu xóa flash và khởi động lại!!\nĐã Upgrade lan 1! \nBản đang khỏi động lại\nCó thể chuyến sang bản khác')
+                            self.display_progress_ui(
+                                'Tập tin tải lên thành công,\nbắt đầu xóa flash và khởi động lại!!\nĐã Upgrade lan 1! \nBản đang khỏi động lại\nCó thể chuyến sang bản khác')
                             self.display_update_times('Lần 1/2 (file list1.txt)\nCần upgrade 2 lần')
                         elif update_status_1 == -1:
-                            self.display_dialog_window_color('background-color: rgb(165, 0, 0);\n','color: rgb(255, 255, 255);')
-                            self.display_progress_ui('Tên File FW nhập vào không đúng với FW trong thư mực "\Firmware",\nGiải Pháp : Kiểm Tra lại tên file Fw,ấn nút start để khởi động lại chương trình')
+                            self.display_dialog_window_color('background-color: rgb(165, 0, 0);\n',
+                                                             'color: rgb(255, 255, 255);')
+                            self.display_progress_ui(
+                                'Tên File FW nhập vào không đúng với FW trong thư mực "\Firmware",\nGiải Pháp : Kiểm Tra lại tên file Fw,ấn nút start để khởi động lại chương trình')
                             driver.close()
                             print('InvalidArgumentException in 1st upgrade')
                             break
@@ -423,13 +438,15 @@ class Inheritance_Ui_MainWindow(Ui_MainWindow):
                         continue
                 else:
                     print('waiting for log in')
-                    #self.display_progress_ui('Đăng nhập thất bại.\nĐang thử lại')
+                    # self.display_progress_ui('Đăng nhập thất bại.\nĐang thử lại')
                     driver.close()
-                    #time.sleep(0.5)
+                    # time.sleep(0.5)
                     continue
             else:
-                #self.display_progress_ui('Checking connection....')
+                # self.display_progress_ui('Checking connection....')
                 self.display_connection_status_ui('Chờ kết nối ...')
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
@@ -439,7 +456,5 @@ if __name__ == "__main__":
     ui.display_start_warning()
     ui.restart_btn.clicked.connect(ui.Restart_Program)
     ui.stop_btn.clicked.connect(ui.Stop_Program)
+
     sys.exit(app.exec_())
-
-
-

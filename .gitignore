@@ -1,9 +1,8 @@
-
 # Default ignored files
 /workspace.xml
 *.bin
-.Firmware
-.build
-.dist
-.__pycache__
 *.txt
+*/Firmware/*
+*/build/*
+*/dist/*
+.gitignore
