@@ -30,30 +30,30 @@ def check_connection():
         return 0
 
 def login():
-    print('driver.session_id = ',driver.session_id)
+    print('self.driver.session_id = ',self.driver.session_id)
     log_times_num = 0
     log_flag = 1
     cur_pw = get_pw()
     def_pass = 'AABB012340'
-    driver.get(link_login)
+    self.driver.get(link_login)
     try:
         while log_flag:
-            if driver.current_url == link_logged:
+            if self.driver.current_url == link_logged:
                 break
             log_times_num += 1
             if log_times_num < 3:
-                driver.find_element_by_id("username").send_keys("admin")
-                driver.find_element_by_id("password").send_keys(cur_pw)
-                driver.find_element_by_id("buttoncolor").click()
-                if driver.current_url == link_logged:
-                    print('driver.current_url = ',driver.current_url)
+                self.driver.find_element_by_id("username").send_keys("admin")
+                self.driver.find_element_by_id("password").send_keys(cur_pw)
+                self.driver.find_element_by_id("buttoncolor").click()
+                if self.driver.current_url == link_logged:
+                    print('self.driver.current_url = ',self.driver.current_url)
                     break
             else:
                 time.sleep(0.5)
-                driver.find_element_by_id("username").send_keys("admin")
-                driver.find_element_by_id("password").send_keys(def_pass)
-                driver.find_element_by_id("buttoncolor").click()
-                if driver.current_url == link_logged:
+                self.driver.find_element_by_id("username").send_keys("admin")
+                self.driver.find_element_by_id("password").send_keys(def_pass)
+                self.driver.find_element_by_id("buttoncolor").click()
+                if self.driver.current_url == link_logged:
                     print ("Logged in with default password after times: ")
                     break
     except:
@@ -63,14 +63,14 @@ def login():
 
 def up_fw(filename):
     try:
-        print('driver.session_id = ', driver.session_id)
+        print('self.driver.session_id = ', self.driver.session_id)
         fw_directory = os.getcwd() + '\Firmware\/{}'.format(filename)
-        driver.get(link_upgrade)
-        driver.find_element_by_name("tools_FW_UploadFile").send_keys(fw_directory)
-        driver.find_element_by_name("FW_apply").click()
+        self.driver.get(link_upgrade)
+        self.driver.find_element_by_name("tools_FW_UploadFile").send_keys(fw_directory)
+        self.driver.find_element_by_name("FW_apply").click()
         while 1:
             time.sleep(0.5)
-            data = driver.find_element_by_tag_name('font')
+            data = self.driver.find_element_by_tag_name('font')
             str_success = data.text
             print('data = ',str_success)
             pattern_en = r'File upload succeeded, starting flash erasing and programming!!'
@@ -142,9 +142,9 @@ def check_Mac_in_Factoy_Reset_List(MAC):
 
 def get_curent_fw():
     try:
-        print('driver.session_id = ', driver.session_id)
-        driver.get(link_status)
-        data = driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr[3]/td[3]')
+        print('self.driver.session_id = ', self.driver.session_id)
+        self.driver.get(link_status)
+        data = self.driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr[3]/td[3]')
         Current_FW = data.text
         print('Current_FW = ', Current_FW)
         return Current_FW
@@ -153,11 +153,11 @@ def get_curent_fw():
 
 def factory_reset():
     try:
-        print('driver.session_id = ', driver.session_id)
-        driver.get(link_maintannance)
-        driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr/td[2]/input[3]').click()
+        print('self.driver.session_id = ', self.driver.session_id)
+        self.driver.get(link_maintannance)
+        self.driver.find_element_by_xpath('//*[@id="block1"]/table[2]/tbody/tr/td[2]/input[3]').click()
         time.sleep(0.2)
-        driver.switch_to.alert.accept()
+        self.driver.switch_to.alert.accept()
         time.sleep(0.5)
     except:
         Restart_Program()
